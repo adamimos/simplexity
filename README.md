@@ -77,3 +77,7 @@ prefix = your_s3_prefix
 ```
 
 [AWS configuration and credential files](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html) can be used for authentication and settings. Authentication credentials should be specified in `~/.aws/credentials`. Settings like `region`, `output`, `endpoint_url` should be specified in `~/.aws/config`. Multiple different profiles can be defined and the specific profile to use can be specified in the `aws` section of the `.ini` file.
+
+## Further Documentation
+
+Detailed guides for each module can be found in the [documentation](documentation) directory. Start with `documentation/index.md` for an overview of available resources.
