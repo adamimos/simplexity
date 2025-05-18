@@ -1,0 +1,9 @@
+name: hf_dataset
+vocab_size: 50257
+instance:
+  _target_: simplexity.generative_processes.hf_dataset.build_hf_dataset_process
+  dataset_name: wikitext
+  split: train
+  text_field: text
+  tokenizer_name: gpt2
+  sequence_len: 128
