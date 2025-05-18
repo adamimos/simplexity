@@ -11,11 +11,13 @@ ProcessName = Literal[
     "rrxor",
     "tom_quantum",
     "zero_one_random",
+    "hf_dataset",
 ]
 
 ProcessBuilder = Literal[
     "simplexity.generative_processes.builder.build_generalized_hidden_markov_model",
     "simplexity.generative_processes.builder.build_hidden_markov_model",
+    "simplexity.generative_processes.hf_dataset.build_hf_dataset_process",
 ]
 ProcessType = ProcessName
 
@@ -114,9 +116,23 @@ class ZeroOneRandomConfig(ProcessInstanceConfig):
 
 
 @dataclass
+class HFDatasetConfig:
+    """Configuration for a HuggingFace dataset generative process."""
+
+    dataset_name: str
+    _target_: str = (
+        "simplexity.generative_processes.hf_dataset.build_hf_dataset_process"
+    )
+    split: str = "train"
+    text_field: str = "text"
+    tokenizer_name: str = "gpt2"
+    sequence_len: int = 128
+
+
+@dataclass
 class Config:
     """Base configuration for predictive models."""
 
     name: ProcessName
     vocab_size: int
-    instance: ProcessInstanceConfig
+    instance: ProcessInstanceConfig | HFDatasetConfig
